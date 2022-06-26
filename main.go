@@ -9,9 +9,10 @@ import (
 )
 
 type Produto struct {
+	Id			int
 	Nome		string
 	Descricao	string
-	Preco		float64
+	Preco		string
 	Quantidade	int
 }
 
@@ -34,42 +35,50 @@ func dbConnect() *sql.DB {
 
 func index(w http.ResponseWriter, r *http.Request) {
 
-	produtos := []Produto {
-		{
-			Nome: "Camiseta",
-			Descricao: "Azul, bem bonita",
-			Preco: 39,
-			Quantidade: 5,
-		},
-		{
-			Nome: "Tênis",
-			Descricao: "Confortável",
-			Preco: 89,
-			Quantidade: 3,
-		},
-		{
-			Nome: "Fone",
-			Descricao: "Muito bom",
-			Preco: 59,
-			Quantidade: 2,
-		},
-		{
-			Nome: "Produto novo",
-			Descricao: "Muito legal",
-			Preco: 1.99,
-			Quantidade: 2,
-		},
+	db := dbConnect()
+
+	selectProdutos, err := db.Query("select * from produtos")
+
+	if err != nil {
+
+		panic(err.Error())
+
+	}
+
+	p := Produto{}
+	produtos := []Produto{}
+
+	for selectProdutos.Next() {
+
+		var id, quantidade 	int
+		var nome, descricao	string
+		var preco			string
+
+		err = selectProdutos.Scan(&id, &nome, &descricao, &preco, &quantidade)
+
+		if err != nil {
+
+			panic(err.Error())
+
+		}
+
+		p.Id = id
+		p.Nome = nome
+		p.Descricao = descricao
+		p.Preco = preco
+		p.Quantidade = quantidade
+
+		produtos = append(produtos, p)
+
 	}
 
 	templ.ExecuteTemplate(w, "Index", produtos)
+	defer db.Close()
 
 }
 
 func main() {
 
-	db := dbConnect()
-	defer db.Close()
-	
 	http.HandleFunc("/", index)
 	http.ListenAndServe(":8000", nil)
 
