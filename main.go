@@ -5,11 +5,39 @@ import (
 	"net/http"
 )
 
+type Produto struct {
+	Nome		string
+	Descricao	string
+	Preco		float64
+	Quantidade	int
+}
+
 var templ = template.Must(template.ParseGlob("templates/*.html"))
 
 func index(w http.ResponseWriter, r *http.Request) {
 
-	templ.ExecuteTemplate(w, "Index", nil)
+	produtos := []Produto {
+		{
+			Nome: "Camiseta",
+			Descricao: "Azul, bem bonita",
+			Preco: 39,
+			Quantidade: 5,
+		},
+		{
+			Nome: "Tênis",
+			Descricao: "Confortável",
+			Preco: 89,
+			Quantidade: 3,
+		},
+		{
+			Nome: "Fone",
+			Descricao: "Muito bom",
+			Preco: 59,
+			Quantidade: 2,
+		},
+	}
+
+	templ.ExecuteTemplate(w, "Index", produtos)
 
 }
 
