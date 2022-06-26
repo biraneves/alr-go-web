@@ -1,8 +1,11 @@
 package main
 
 import (
+	"database/sql"
 	"html/template"
 	"net/http"
+
+	_ "github.com/lib/pq"
 )
 
 type Produto struct {
@@ -13,6 +16,21 @@ type Produto struct {
 }
 
 var templ = template.Must(template.ParseGlob("templates/*.html"))
+
+func dbConnect() *sql.DB {
+
+	conn := "user=postgres dbname=alura_loja password=senhalocal host=localhost sslmode=disable"
+	db, err := sql.Open("postgres", conn)
+
+	if err != nil {
+
+		panic(err.Error())
+
+	}
+
+	return db
+
+}
 
 func index(w http.ResponseWriter, r *http.Request) {
 
@@ -49,6 +67,9 @@ func index(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
+	db := dbConnect()
+	defer db.Close()
+	
 	http.HandleFunc("/", index)
 	http.ListenAndServe(":8000", nil)
 
