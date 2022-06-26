@@ -35,6 +35,12 @@ func index(w http.ResponseWriter, r *http.Request) {
 			Preco: 59,
 			Quantidade: 2,
 		},
+		{
+			Nome: "Produto novo",
+			Descricao: "Muito legal",
+			Preco: 1.99,
+			Quantidade: 2,
+		},
 	}
 
 	templ.ExecuteTemplate(w, "Index", produtos)
