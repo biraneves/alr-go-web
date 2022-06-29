@@ -1,18 +1,18 @@
-# Aplicação _Web_ com Go
+# Web app in Go
 
-> Projeto desenvolvido ao longo do curso **Go: crie uma aplicação _web_**, da [Alura](https://alura.com.br).
+> Project developed during the course **Go: crie uma aplicação _web_** (Go: create a web application), by [Alura](https://alura.com.br).
 
-🚧 Curso em andamento - projeto em construção.
+🚧 Course in progress - project under construction.
 
-## Descrição
-Aplicação _web_ simples que implementa um CRUD básico para os produtos de uma loja.
+## Description
+Simple web application that implements a basic CRUD for a store's products.
 
-### Ambientes de execução
-- Terminal (_backend_).
-- Navegador (_frontend_).
+### Runtime environments
+- Console (backend).
+- Web browser (frontend).
 
-### Tecnologias empregadas
-- Linguagem Go;
+### Adopted technologies
+- Go;
 - HTML5;
 - CSS3;
 - PostgreSQL.
