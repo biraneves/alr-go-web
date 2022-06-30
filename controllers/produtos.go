@@ -94,7 +94,9 @@ func Update(w http.ResponseWriter, r *http.Request) {
 			log.Println("Erro na conversão da quantidade:", err)
 		}
 
-		models.AtualizaProduto(intId, nome, descricao, fltPreco, intQuantidade)
+		models.AtualizaProduto(intId, intQuantidade, nome, descricao, fltPreco)
+
+		http.Redirect(w, r, "/", 301)
 
 	}
 
