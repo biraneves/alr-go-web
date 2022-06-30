@@ -12,7 +12,7 @@
                             <th>Descrição</th>
                             <th>Preço</th>
                             <th>Quantidade</th>
-                            <th>Opções</th>
+                            <th colspan="2">Opções</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,6 +22,7 @@
                             <td>{{.Descricao}}</td>
                             <td>{{.Preco}}</td>
                             <td>{{.Quantidade}}</td>
+                            <td><a href="/edit?id={{.Id}}" class="btn btn-info">Editar</a></td>
                             <td><button onclick="onDelete('{{.Id}}')" class="btn btn-danger">Excluir</button></td>
                         </tr>
                         {{end}}
