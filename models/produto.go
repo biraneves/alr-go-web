@@ -16,7 +16,7 @@ func BuscaProdutos() []Produto {
 
 	db := database.DbConnect()
 
-	selectProdutos, err := db.Query("select * from produtos")
+	selectProdutos, err := db.Query("select * from produtos order by nome")
 
 	if err != nil {
 
