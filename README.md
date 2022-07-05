@@ -2,8 +2,6 @@
 
 > Project developed during the course **Go: crie uma aplicação _web_** (Go: create a web application), by [Alura](https://alura.com.br).
 
-🚧 Course in progress - project under construction.
-
 ## Description
 Simple web application that implements a basic CRUD for a store's products.
 
